@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizarra Digital - Colegio Montano - Los Párrafos y su Estructura</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Configuración del tema con la paleta de colores institucional del Colegio Montano -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        montanoAzul: '#1269A8',
+                        montanoAmarillo: '#F7D615',
+                        montanoVerdeGris: '#54887D',
+                        montanoAzulClaro: '#88B5C7',
+                        montanoVerdeOliva: '#A6B046',
+                        montanoFondo: '#F2F5E9',
+                    },
+                    fontFamily: {
+                        sans: ['Segoe UI', 'Tahoma', 'Verdana', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F2F5E9;
+            color: #1a202c;
+        }
+        .tab-btn.active {
+            background-color: #1269A8;
+            color: white;
+            border-bottom: 4px solid #F7D615;
+            font-weight: bold;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-content.open {
+            max-height: 600px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans">
+
+    <!-- ENCABEZADO INSTITUCIONAL -->
+    <header class="bg-montanoAzul text-white shadow-md p-4 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <!-- Logo e Identidad Institucional -->
+            <div class="flex items-center space-x-4">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyEop0yf6lZ7Jk9MILZxF1rBj4Oqs5esyhIQ&s" 
+                     alt="Logo Colegio Montano" 
+                     class="h-12 w-auto bg-white p-1 rounded-md shadow"
+                     onerror="this.src='https://placehold.co/120x50/1269A8/FFFFFF?text=MONTANO'">
+                <div>
+                    <h1 class="text-xl font-bold text-montanoAmarillo leading-tight">Colegio Montano</h1>
+                    <p class="text-xs text-gray-200">Pizarra Digital Interactiva - Plan Diario (Duración total: 50 minutos)</p>
+                </div>
+            </div>
+
+            <!-- Datos Informativos de la Clase (SIN número de plan) -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs bg-white/10 p-2 rounded-lg border border-white/20">
+                <div><span class="font-semibold text-montanoAmarillo">Curso:</span> Comun. y Lenguaje</div>
+                <div><span class="font-semibold text-montanoAmarillo">Grado:</span> 4to Primaria</div>
+                <div><span class="font-semibold text-montanoAmarillo">Tema:</span> Los Párrafos y su Estructura</div>
+                <div><span class="font-semibold text-montanoAmarillo">Docente:</span> Andrea Aguilar</div>
+                <div><span class="font-semibold text-montanoAmarillo">Unidad:</span> 1</div>
+                <div><span class="font-semibold text-montanoAmarillo">Fecha:</span> Enero 2027</div>
+                <div><span class="font-semibold text-montanoAmarillo">Duración:</span> 50 Minutos</div>
+                <div><span class="font-semibold text-montanoAmarillo">Modelo:</span> Hábitos Montano</div>
+            </div>
+
+            <!-- Botón para Pantalla Completa -->
+            <button onclick="toggleFullScreen()" class="bg-montanoAmarillo hover:bg-yellow-400 text-montanoAzul font-bold px-3 py-2 rounded-lg flex items-center gap-2 shadow transition text-sm">
+                <i class="fa-solid fa-expand"></i>
+                <span class="hidden sm:inline">Pantalla Completa</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MARCO PEDAGÓGICO INSTITUCIONAL (ENFOQUE, CNB Y HÁBITOS) -->
+    <section class="max-w-7xl mx-auto w-full p-4 my-2">
+        <div class="bg-white rounded-xl shadow-sm border-l-4 border-montanoVerdeGris p-4 grid md:grid-cols-3 gap-4 text-xs md:text-sm">
+            <div>
+                <h3 class="font-bold text-montanoAzul flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap text-montanoVerdeOliva"></i> Competencia CNB & Logro
+                </h3>
+                <p class="mt-1 text-gray-700"><strong>Competencia:</strong> Redacta textos informativos y narrativos aplicando las normas gramáticas y de puntuación en la producción escrita (CNB 4to Primaria).</p>
+                <p class="mt-1 text-gray-700"><strong>Logro:</strong> Identifica la idea principal y las ideas secundarias de un párrafo, y redacta párrafos estructurados usando mayúscula inicial y punto y aparte/final.</p>
+            </div>
+            <div>
+                <h3 class="font-bold text-montanoAzul flex items-center gap-2">
+                    <i class="fa-solid fa-brain text-montanoVerdeOliva"></i> Competencias Clave & Hábitos
+                </h3>
+                <p class="mt-1 text-gray-700"><strong>Competencias Clave:</strong> Pensamiento estructural, síntesis, redacción escrita, orden sintáctico y trabajo colaborativo.</p>
+                <p class="mt-1 text-gray-700"><strong>Hábitos Montano:</strong> <span class="bg-montanoAmarillo/30 px-1 rounded font-semibold">Comenzar con un fin en mente</span> (planificar antes de escribir) y <span class="bg-montanoAmarillo/30 px-1 rounded font-semibold">Sinergizar</span> (unir ideas en equipo).</p>
+            </div>
+            <div>
+                <h3 class="font-bold text-montanoAzul flex items-center gap-2">
+                    <i class="fa-solid fa-box-archive text-montanoVerdeOliva"></i> Recursos & Momentos Eval.
+                </h3>
+                <p class="mt-1 text-gray-700"><strong>Recursos:</strong> Libro de texto, cuadernos, tarjetas organizadoras, marcadores y pizarra digital.</p>
+                <p class="mt-1 text-gray-700"><strong>Evaluación:</strong> Inicial (Construcción del "Párrafo Hamburguesa"), Formativa (Subrayado de idea principal vs. secundarias), Sumativa (Rúbrica de Redacción en Plenaria).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NAVEGACIÓN DE PESTAÑAS (SECUENCIA DIDÁCTICA - 50 MINUTOS) -->
+    <main class="max-w-7xl mx-auto w-full flex-grow px-4 pb-8">
+        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+            <!-- Barra de Pestañas -->
+            <div class="flex flex-wrap border-b border-gray-200 bg-gray-50 text-sm md:text-base">
+                <button onclick="switchTab('tab1')" id="btn-tab1" class="tab-btn active flex-1 py-3 px-4 text-center font-semibold text-gray-600 hover:text-montanoAzul flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-lightbulb text-montanoAmarillo"></i> I) Introducción Motivante (5 min)
+                </button>
+                <button onclick="switchTab('tab2')" id="btn-tab2" class="tab-btn flex-1 py-3 px-4 text-center font-semibold text-gray-600 hover:text-montanoAzul flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-user-pen text-montanoAzulClaro"></i> II) Trabajo Individual (15 min)
+                </button>
+                <button onclick="switchTab('tab3')" id="btn-tab3" class="tab-btn flex-1 py-3 px-4 text-center font-semibold text-gray-600 hover:text-montanoVerdeGris flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-people-group text-montanoVerdeGris"></i> III) Trabajo Cooperativo (18 min)
+                </button>
+                <button onclick="switchTab('tab4')" id="btn-tab4" class="tab-btn flex-1 py-3 px-4 text-center font-semibold text-gray-600 hover:text-montanoVerdeOliva flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-comments text-montanoVerdeOliva"></i> IV) Plenaria & Evaluación (12 min)
+                </button>
+            </div>
+
+            <!-- CONTENIDO DE LAS PESTAÑAS -->
+            <div class="p-6">
+
+                <!-- PESTAÑA I: INTRODUCCIÓN MOTIVANTE (5 MINUTOS) -->
+                <div id="tab1" class="tab-content block space-y-6">
+                    <div class="bg-yellow-50 border-l-4 border-montanoAmarillo p-4 rounded-r-md">
+                        <h2 class="text-lg font-bold text-montanoAzul flex items-center gap-2">
+                            <i class="fa-solid fa-burger text-montanoAmarillo"></i> Dinámica Express: "El Párrafo Hamburguesa" (5 min)
+                        </h2>
+                        <p class="text-sm text-gray-700 mt-1">
+                            Comprende la estructura visual de un párrafo organizando sus partes como una hamburguesa.
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 space-y-3">
+                            <h3 class="font-semibold text-montanoAzul flex items-center gap-2">
+                                <i class="fa-solid fa-layer-group text-montanoVerdeGris"></i> Estructura Visual del Párrafo:
+                            </h3>
+                            <div class="p-3 bg-white rounded border border-gray-200 text-sm space-y-2">
+                                <div class="p-2 bg-amber-100 border-l-4 border-amber-500 rounded font-semibold text-amber-900 text-xs">
+                                    <i class="fa-solid fa-bread-slice"></i> Pan Superior: Oración Introductoria / Idea Principal
+                                </div>
+                                <div class="p-2 bg-red-100 border-l-4 border-red-500 rounded text-xs text-red-900">
+                                    <i class="fa-solid fa-drumstick-bite"></i> Carne / Relleno: Ideas Secundarias (Detalles, ejemplos, razones)
+                                </div>
+                                <div class="p-2 bg-amber-100 border-l-4 border-amber-500 rounded font-semibold text-amber-900 text-xs">
+                                    <i class="fa-solid fa-bread-slice"></i> Pan Inferior: Oración de Cierre / Conclusión
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-montanoAzul/5 p-4 rounded-lg border border-montanoAzul/20 space-y-3">
+                            <h3 class="font-semibold text-montanoAzul flex items-center gap-2">
+                                <i class="fa-solid fa-quote-left text-montanoAzulClaro"></i> Concepto Clave:
+                            </h3>
+                            <div class="p-4 bg-white rounded shadow-sm border-l-4 border-montanoAzul text-sm text-gray-700 space-y-2">
+                                <p class="font-bold text-montanoAzul">¿Qué es un Párrafo?</p>
+                                <p>Un párrafo es un conjunto de oraciones conectadas entre sí que desarrollan una <strong>única idea principal</strong>. Comienza siempre con mayúscula (y sangría opcional) y termina con un <strong>punto y aparte</strong> o <strong>punto final</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PESTAÑA II: TRABAJO INDIVIDUAL (15 MINUTOS) -->
+                <div id="tab2" class="tab-content hidden space-y-6">
+                    <div class="bg-blue-50 border-l-4 border-montanoAzulClaro p-4 rounded-r-md">
+                        <h2 class="text-lg font-bold text-montanoAzul flex items-center gap-2">
+                            <i class="fa-solid fa-book-open"></i> Guía Didáctica: Partes y Reglas de Puntuación
+                        </h2>
+                        <p class="text-sm text-gray-700 mt-1">
+                            Análisis del párrafo e identificación de elementos fundamentales en el cuaderno.
+                        </p>
+                    </div>
+
+                    <!-- TARJETAS DE ELEMENTOS -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs md:text-sm">
+                        <div class="bg-white p-3 rounded-lg border border-gray-200 shadow-sm border-t-4 border-montanoAzul">
+                            <strong class="text-montanoAzul text-sm block mb-1"><i class="fa-solid fa-star"></i> 1. Idea Principal</strong>
+                            <p class="text-gray-600">Es el núcleo o mensaje central sin el cual el párrafo pierde sentido.</p>
+                        </div>
+
+                        <div class="bg-white p-3 rounded-lg border border-gray-200 shadow-sm border-t-4 border-montanoAmarillo">
+                            <strong class="text-montanoAzul text-sm block mb-1"><i class="fa-solid fa-list-check"></i> 2. Ideas Secundarias</strong>
+                            <p class="text-gray-600">Amplían, explican, ejemplifican o justifican la idea principal.</p>
+                        </div>
+
+                        <div class="bg-white p-3 rounded-lg border border-gray-200 shadow-sm border-t-4 border-montanoVerdeGris">
+                            <strong class="text-montanoAzul text-sm block mb-1"><i class="fa-solid fa-font"></i> 3. Mayúscula Inicial</strong>
+                            <p class="text-gray-600">Todo párrafo debe iniciar obligatoriamente con letra mayúscula.</p>
+                        </div>
+
+                        <div class="bg-white p-3 rounded-lg border border-gray-200 shadow-sm border-t-4 border-montanoVerdeOliva">
+                            <strong class="text-montanoAzul text-sm block mb-1"><i class="fa-solid fa-circle-dot"></i> 4. El Punto y Aparte</strong>
+                            <p class="text-gray-600">Separa dos párrafos distintos que tratan sobre aspectos diferentes.</p>
+                        </div>
+                    </div>
+
+                    <!-- Ejercicio Práctico Individual -->
+                    <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm space-y-3">
+                        <h3 class="font-bold text-gray-800 text-sm md:text-base">Ejercicio Práctico: Identificación de Estructura (En tu cuaderno)</h3>
+                        <p class="text-sm text-gray-600">Lee el siguiente párrafo en tu cuaderno. Subraya con azul la <strong>Idea Principal</strong> y con verde dos <strong>Ideas Secundarias</strong>:</p>
+
+                        <div class="p-3 bg-gray-50 rounded border text-sm text-gray-800 leading-relaxed font-sans">
+                            "El quetzal es una de las aves más hermosas y representativas de Guatemala. Su plumaje es de un verde esmeralda brillante y su pecho es de color rojo intenso. Habita en los bosques nubosos del país y es considerado el símbolo nacional de la libertad."
+                        </div>
+
+                        <!-- Botón Desplegable con Solución -->
+                        <div class="pt-2">
+                            <button onclick="toggleAccordion('solucion-parrafo')" class="bg-montanoAzul text-white px-4 py-2 rounded-md text-xs font-semibold hover:bg-montanoVerdeGris transition flex items-center gap-2">
+                                <i class="fa-solid fa-eye"></i> Desplegar Verificación de Análisis
+                            </button>
+                            <div id="solucion-parrafo" class="accordion-content mt-2 bg-green-50 border border-green-200 p-3 rounded-md text-sm text-gray-700 space-y-2">
+                                <p><strong>Análisis Correcto del Párrafo:</strong></p>
+                                <ul class="list-disc list-inside text-xs space-y-1">
+                                    <li><strong class="text-blue-700">Idea Principal (Azul):</strong> <em>"El quetzal es una de las aves más hermosas y representativas de Guatemala."</em></li>
+                                    <li><strong class="text-green-700">Idea Secundaria 1 (Verde):</strong> <em>"Su plumaje es de un verde esmeralda brillante y su pecho es de color rojo intenso."</em> (Descripción física).</li>
+                                    <li><strong class="text-green-700">Idea Secundaria 2 (Verde):</strong> <em>"Habita en los bosques nubosos del país y es considerado el símbolo nacional de la libertad."</em> (Hábitat y significado).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PESTAÑA III: TRABAJO COOPERATIVO (18 MINUTOS) -->
+                <div id="tab3" class="tab-content hidden space-y-6">
+                    <div class="bg-green-50 border-l-4 border-montanoVerdeGris p-4 rounded-r-md">
+                        <h2 class="text-lg font-bold text-montanoAzul flex items-center gap-2">
+                            <i class="fa-solid fa-users"></i> Taller en Equipos: "Fabrica de Párrafos" (18 min)
+                        </h2>
+                        <p class="text-sm text-gray-700 mt-1">
+                            Construcción en equipo de un párrafo bien estructurado aplicando el hábito Montano: <strong>Comenzar con un fin en mente</strong>.
+                        </p>
+                    </div>
+
+                    <!-- Roles en el Equipo -->
+                    <div class="grid md:grid-cols-4 gap-4">
+                        <div class="bg-white p-3 rounded-lg border border-gray-200 shadow-sm text-center">
+                            <div class="w-8 h-8 mx-auto bg-montanoAzul/10 text-montanoAzul rounded-full flex items-center justify-center font-bold mb-1 text-sm">1</div>
+                            <h4 class="font-bold text-montanoAzul text-xs md:text-sm">Arquitecto de la Idea</h4>
+                            <p class="text-xs text-gray-600 mt-1">Propone y redacta la Idea Principal clara y potente.</p>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-gray-200 shadow-sm text-center">
+                            <div class="w-8 h-8 mx-auto bg-montanoAmarillo/30 text-montanoAzul rounded-full flex items-center justify-center font-bold mb-1 text-sm">2</div>
+                            <h4 class="font-bold text-montanoAzul text-xs md:text-sm">Redactor de Detalle A</h4>
+                            <p class="text-xs text-gray-600 mt-1">Aporta la primera idea secundaria (ejemplos o explicaciones).</p>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-gray-200 shadow-sm text-center">
+                            <div class="w-8 h-8 mx-auto bg-montanoVerdeGris/20 text-montanoVerdeGris rounded-full flex items-center justify-center font-bold mb-1 text-sm">3</div>
+                            <h4 class="font-bold text-montanoAzul text-xs md:text-sm">Redactor de Detalle B</h4>
+                            <p class="text-xs text-gray-600 mt-1">Aporta la segunda idea secundaria y la oración de cierre.</p>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-gray-200 shadow-sm text-center">
+                            <div class="w-8 h-8 mx-auto bg-montanoAzulClaro/30 text-montanoAzul rounded-full flex items-center justify-center font-bold mb-1 text-sm">4</div>
+                            <h4 class="font-bold text-montanoAzul text-xs md:text-sm">Revisor Ortográfico</h4>
+                            <p class="text-xs text-gray-600 mt-1">Verifica mayúsculas iniciales, conectores y puntos finales.</p>
+                        </div>
+                    </div>
+
+                    <!-- Reto del Trabajo Cooperativo -->
+                    <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm space-y-3 text-sm">
+                        <h3 class="font-bold text-montanoAzul text-sm md:text-base flex items-center gap-2">
+                            <i class="fa-solid fa-pencil"></i> Temas Disponibles para Redactar:
+                        </h3>
+                        <div class="grid md:grid-cols-3 gap-3">
+                            <div class="p-3 bg-montanoFondo rounded border-l-4 border-montanoAzul">
+                                <strong>Tema A: La Importancia del Deporte</strong>
+                                <p class="text-xs text-gray-600 mt-1">Expliquen por qué ejercitarse beneficia la salud de los niños.</p>
+                            </div>
+                            <div class="p-3 bg-montanoFondo rounded border-l-4 border-montanoAmarillo">
+                                <strong>Tema B: El Cuidado del Agua</strong>
+                                <p class="text-xs text-gray-600 mt-1">Redacten sobre acciones concretas para no desperdiciar el agua.</p>
+                            </div>
+                            <div class="p-3 bg-montanoFondo rounded border-l-4 border-montanoVerdeGris">
+                                <strong>Tema C: Mi Libro Favorito</strong>
+                                <p class="text-xs text-gray-600 mt-1">Argumenten por qué la lectura estimula la imaginación.</p>
+                            </div>
+                        </div>
+                        <ol class="list-decimal list-inside space-y-1 text-gray-700 text-xs md:text-sm pt-2">
+                            <li>Elige un tema y planifica con tu equipo la idea central (Hábito: <strong>Fin en mente</strong>).</li>
+                            <li>Escriban en una hoja de trabajo el párrafo completo estructurando pan superior, relleno y pan inferior.</li>
+                            <li>Asegúrense de usar al menos 2 conectores de enlace (<em>además, también, por lo tanto</em>).</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- PESTAÑA IV: PLENARIA & EVALUACIÓN (12 MINUTOS) -->
+                <div id="tab4" class="tab-content hidden space-y-6">
+                    <div class="bg-purple-50 border-l-4 border-montanoVerdeOliva p-4 rounded-r-md">
+                        <h2 class="text-lg font-bold text-montanoAzul flex items-center gap-2">
+                            <i class="fa-solid fa-gamepad"></i> IV) Plenaria & Juego Interactivo (12 min)
+                        </h2>
+                        <p class="text-sm text-gray-700 mt-1">
+                            Lectura de párrafos por equipos y trivia interactiva sobre la estructura del párrafo.
+                        </p>
+                    </div>
+
+                    <!-- Juego Interactivo: Trivia de Párrafos -->
+                    <div class="bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
+                        <h3 class="font-bold text-montanoAzul mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-puzzle-piece text-montanoAmarillo"></i> Trivia Express: "Maestros del Párrafo"
+                        </h3>
+                        <div id="trivia-box" class="bg-montanoFondo p-4 rounded-lg text-center space-y-4">
+                            <p id="trivia-question" class="font-semibold text-gray-800 text-base">
+                                Cargando pregunta...
+                            </p>
+                            <div id="trivia-options" class="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-md mx-auto">
+                                <!-- Opciones cargadas por JS -->
+                            </div>
+                            <div id="trivia-feedback" class="font-bold text-sm h-6"></div>
+                        </div>
+                    </div>
+
+                    <!-- RÚBRICA INTERACTIVA DE EVALUACIÓN PARA LA PLENARIA -->
+                    <div class="bg-white p-5 rounded-lg border border-gray-200 shadow-sm space-y-4">
+                        <div class="flex justify-between items-center flex-wrap gap-2">
+                            <h3 class="font-bold text-montanoAzul text-base flex items-center gap-2">
+                                <i class="fa-solid fa-clipboard-check text-montanoVerdeGris"></i> Rúbrica de Plenaria - Redacción de Párrafos
+                            </h3>
+                            <span class="text-xs bg-montanoAzul/10 text-montanoAzul px-2 py-1 rounded font-semibold">Evaluación Sumativa</span>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs md:text-sm border-collapse border border-gray-200">
+                                <thead>
+                                    <tr class="bg-montanoAzul text-white">
+                                        <th class="p-2 border">Criterio de Evaluación</th>
+                                        <th class="p-2 border text-center w-28">Excelente (3 pts)</th>
+                                        <th class="p-2 border text-center w-28">Satisfactorio (2 pts)</th>
+                                        <th class="p-2 border text-center w-28">En Proceso (1 pt)</th>
+                                        <th class="p-2 border text-center w-20">Punteo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="p-2 border font-medium">1. Claridad de la Idea Principal</td>
+                                        <td class="p-2 border text-gray-600 text-xs">La idea principal es clara, bien delimitada y fácil de identificar.</td>
+                                        <td class="p-2 border text-gray-600 text-xs">La idea principal está presente pero es algo confusa.</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Falta una idea principal o el párrafo no tiene coherencia.</td>
+                                        <td class="p-2 border text-center font-bold text-montanoAzul">
+                                            <select onchange="updateScore()" class="rubric-score rounded border border-gray-300 p-1">
+                                                <option value="3">3</option>
+                                                <option value="2">2</option>
+                                                <option value="1">1</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 border font-medium">2. Pertinencia de Ideas Secundarias</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Contiene al menos dos ideas secundarias que amplían directamente la principal.</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Incluye solo una idea secundaria o se sale levemente del tema.</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Las oraciones no guardan relación con la idea principal.</td>
+                                        <td class="p-2 border text-center font-bold text-montanoAzul">
+                                            <select onchange="updateScore()" class="rubric-score rounded border border-gray-300 p-1">
+                                                <option value="3">3</option>
+                                                <option value="2">2</option>
+                                                <option value="1">1</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 border font-medium">3. Puntuación y Mayúsculas</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Inicia correctamente con mayúscula y utiliza los puntos correspondientes.</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Omite la mayúscula inicial o el punto final.</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Ignora las normas básicas de mayúsculas y puntuación.</td>
+                                        <td class="p-2 border text-center font-bold text-montanoAzul">
+                                            <select onchange="updateScore()" class="rubric-score rounded border border-gray-300 p-1">
+                                                <option value="3">3</option>
+                                                <option value="2">2</option>
+                                                <option value="1">1</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 border font-medium">4. Trabajo en Equipo y Presentación</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Todos los integrantes cumplieron sus roles y presentaron con voz fluida.</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Cumplieron sus roles pero faltó coordinación durante la lectura.</td>
+                                        <td class="p-2 border text-gray-600 text-xs">Poca colaboración y desorganización al presentar.</td>
+                                        <td class="p-2 border text-center font-bold text-montanoAzul">
+                                            <select onchange="updateScore()" class="rubric-score rounded border border-gray-300 p-1">
+                                                <option value="3">3</option>
+                                                <option value="2">2</option>
+                                                <option value="1">1</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Total Obtenido -->
+                        <div class="flex justify-between items-center pt-2 bg-gray-50 p-3 rounded-lg">
+                            <span class="font-bold text-gray-700">Punteo Total Obtenido:</span>
+                            <span id="total-score" class="text-xl font-extrabold text-montanoAzul">12 / 12 pts</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="bg-montanoAzul text-white text-center py-3 text-xs mt-auto">
+        <p>Colegio Montano &copy; 2027 - Pizarra Digital Interactiva para el Aula Presencial</p>
+    </footer>
+
+    <!-- LÓGICA DE INTERACTIVIDAD JAVASCRIPT -->
+    <script>
+        // Cambiar entre Pestañas de la Secuencia Didáctica
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+                content.classList.remove('block');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById(tabId).classList.add('block');
+            document.getElementById('btn-' + tabId).classList.add('active');
+        }
+
+        // Alternar Soluciones Desplegables
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            content.classList.toggle('open');
+        }
+
+        // Función Pantalla Completa
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(`Error al activar pantalla completa: ${err.message}`);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Actualizar Punteo de la Rúbrica
+        function updateScore() {
+            const selects = document.querySelectorAll('.rubric-score');
+            let total = 0;
+            selects.forEach(select => {
+                total += parseInt(select.value);
+            });
+            document.getElementById('total-score').innerText = total + " / 12 pts";
+        }
+
+        // TRIVIA INTERACTIVA DE LOS PÁRRAFOS Y SU ESTRUCTURA
+        const triviaData = [
+            {
+                q: "¿Con qué letra debe comenzar SIEMPRE un párrafo?",
+                options: [
+                    "Con letra minúscula",
+                    "Con una cifra numérica",
+                    "Con letra mayúscula",
+                    "Con un signo de interrogación"
+                ],
+                correct: 2
+            },
+            {
+                q: "¿Qué función cumplen las ideas secundarias dentro del párrafo?",
+                options: [
+                    "Cambiar totalmente de tema",
+                    "Explicar, ampliar o dar ejemplos de la idea principal",
+                    "Contar una historia diferente",
+                    "Repetir exactamente el título"
+                ],
+                correct: 1
+            },
+            {
+                q: "¿Qué signo ortográfico marca el final de un párrafo cuando el texto continúa en otra línea con otro tema?",
+                options: [
+                    "Coma (,)",
+                    "Punto y seguido (.)",
+                    "Punto y aparte (.)",
+                    "Dos puntos (:)"
+                ],
+                correct: 2
+            },
+            {
+                q: "El hábito Montano de 'Comenzar con un fin en mente' nos ayuda a escribir párrafos porque:",
+                options: [
+                    "Nos impulsa a escribir sin pensar",
+                    "Nos permite planificar la idea principal antes de redactar",
+                    "Hace que terminemos más rápido sin revisar",
+                    "Evita el uso de la puntuación"
+                ],
+                correct: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+
+        function loadTrivia() {
+            const q = triviaData[currentQuestion];
+            document.getElementById('trivia-question').innerText = q.q;
+            const optionsDiv = document.getElementById('trivia-options');
+            optionsDiv.innerHTML = '';
+            document.getElementById('trivia-feedback').innerText = '';
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "bg-white hover:bg-montanoAzul hover:text-white border border-montanoAzul text-montanoAzul font-medium py-2 px-3 rounded-lg text-xs md:text-sm transition shadow-sm";
+                btn.innerText = opt;
+                btn.onclick = () => checkAnswer(idx);
+                optionsDiv.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIdx) {
+            const q = triviaData[currentQuestion];
+            const feedback = document.getElementById('trivia-feedback');
+            if (selectedIdx === q.correct) {
+                feedback.className = "font-bold text-sm text-green-600";
+                feedback.innerText = "¡Excelente! Comprendes muy bien la estructura del párrafo.";
+            } else {
+                feedback.className = "font-bold text-sm text-red-500";
+                feedback.innerText = "¡Inténtalo de nuevo! Recuerda las partes esenciales del párrafo.";
+            }
+
+            setTimeout(() => {
+                currentQuestion = (currentQuestion + 1) % triviaData.length;
+                loadTrivia();
+            }, 2000);
+        }
+
+        // Inicialización al cargar la página
+        window.onload = function() {
+            loadTrivia();
+            updateScore();
+        };
+    </script>
+</body>
+</html>
